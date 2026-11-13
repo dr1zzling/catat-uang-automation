@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Catat Uang">
+  <rect width="32" height="32" rx="8" fill="#0c6b45" />
+  <rect x="6" y="10" width="20" height="14" rx="3" fill="none" stroke="#f7fbf8" stroke-width="2" />
+  <path d="M6 14h20" fill="none" stroke="#f7fbf8" stroke-width="2" />
+  <path d="M20 18h3" fill="none" stroke="#f7fbf8" stroke-width="2" stroke-linecap="round" />
+</svg>

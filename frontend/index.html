@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Dashboard Catat Uang: pantau pemasukan, pengeluaran, dan saldo dari catatan bot WhatsApp."
+    />
+    <meta name="theme-color" content="#f5f2e9" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>Catat Uang | Dashboard Keuangan</title>
+    <script>
+      ;(function () {
+        try {
+          var stored = localStorage.getItem('catat-uang.theme')
+          var dark = stored
+            ? stored === 'dark'
+            : window.matchMedia('(prefers-color-scheme: dark)').matches
+          if (dark) document.documentElement.classList.add('dark')
+        } catch (error) {
+          // localStorage bisa diblokir; tema terang tetap dipakai.
+        }
+      })()
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>
+      Dashboard Catat Uang membutuhkan JavaScript. Aktifkan JavaScript di browser
+      untuk melanjutkan.
+    </noscript>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

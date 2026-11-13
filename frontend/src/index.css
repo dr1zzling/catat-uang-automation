@@ -1,0 +1,171 @@
+@import "tailwindcss";
+@import "@fontsource-variable/plus-jakarta-sans";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  color-scheme: light;
+  --paper: #f5f2e9;
+  --surface: #fcfaf5;
+  --surface-strong: #ffffff;
+  --ink: #16211b;
+  --muted: #5a6a61;
+  --line: #ddd7c7;
+  --line-strong: #c6bfa9;
+  --accent: #0c6b45;
+  --accent-ink: #f7fbf8;
+  --focus: #0c6b45;
+  --income-bg: #e4f0e7;
+  --income-ink: #0a5a36;
+  --expense-bg: #f8e8e4;
+  --expense-ink: #97322b;
+  --balance-bg: #e7eef5;
+  --balance-ink: #1e405c;
+  --danger-bg: #97322b;
+  --danger-ink: #ffffff;
+  --chart-grid: #e2ddce;
+}
+
+.dark {
+  color-scheme: dark;
+  --paper: #0c1210;
+  --surface: #131a16;
+  --surface-strong: #18211c;
+  --ink: #eef3ef;
+  --muted: #a3b2a8;
+  --line: #26322b;
+  --line-strong: #3a4940;
+  --accent: #4cd99a;
+  --accent-ink: #07130d;
+  --focus: #6fe0a8;
+  --income-bg: #10281c;
+  --income-ink: #6fe0a8;
+  --expense-bg: #2b1714;
+  --expense-ink: #ff9d92;
+  --balance-bg: #12212b;
+  --balance-ink: #a9cbe8;
+  --danger-bg: #ff9d92;
+  --danger-ink: #2b1714;
+  --chart-grid: #24302a;
+}
+
+@theme inline {
+  --font-sans: "Plus Jakarta Sans Variable", ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", sans-serif;
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-surface-strong: var(--surface-strong);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-focus: var(--focus);
+  --color-income-bg: var(--income-bg);
+  --color-income-ink: var(--income-ink);
+  --color-expense-bg: var(--expense-bg);
+  --color-expense-ink: var(--expense-ink);
+  --color-balance-bg: var(--balance-bg);
+  --color-balance-ink: var(--balance-ink);
+  --color-danger-bg: var(--danger-bg);
+  --color-danger-ink: var(--danger-ink);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--paper);
+    color: var(--ink);
+    font-family: "Plus Jakarta Sans Variable", ui-sans-serif, system-ui, -apple-system,
+      "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  a[href],
+  label[for],
+  label:has(input[type="radio"]),
+  label:has(input[type="checkbox"]),
+  select,
+  summary {
+    cursor: pointer;
+  }
+
+  button:disabled,
+  [aria-disabled="true"] {
+    cursor: not-allowed;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background-color: var(--accent);
+    color: var(--accent-ink);
+  }
+
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+  }
+}
+
+@keyframes modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-panel {
+  animation: modal-in 160ms ease-out;
+}
+
+.toast-enter {
+  animation: toast-in 160ms ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .modal-panel,
+  .toast-enter {
+    animation: none;
+  }
+}
