@@ -24,6 +24,7 @@ flowchart LR
 
 | Bagian | Teknologi |
 | --- | --- |
+| Bot wa | N8N, PosgreSQL |
 | Backend | Python, FastAPI, SQLAlchemy 2, Pydantic 2, psycopg2, uvicorn |
 | Frontend | React 19, Vite 8, Tailwind CSS v4, React Router 7, Axios, Recharts, Lucide |
 | Database | PostgreSQL (dimiliki bot WhatsApp) |
@@ -122,9 +123,3 @@ Semua endpoint diawali prefiks `/api`.
 
 - Frontend: import repositori ke Vercel dengan **Root Directory** `frontend`. `vercel.json` sudah meneruskan rute SPA ke `index.html` tanpa mengganggu aset dan favicon. Set `VITE_API_BASE_URL` di environment variable Vercel.
 - Backend: jalankan `uvicorn app.main:app` di host Python (atau container) dengan `DATABASE_URL` produksi. Tambahkan domain frontend produksi ke `CORS_ORIGINS`.
-
-## Catatan
-
-- Backend belum menerbitkan token sesi. Proteksi halaman dashboard masih berupa pengecekan `localStorage` di sisi klien — tambahkan autentikasi token di backend sebelum dipakai untuk data sensitif atau produksi.
-- Riwayat dimuat 200 data per permintaan sampai seluruh total terbaca. Filter periode, pencarian, dan tipe dihitung di klien supaya kartu, grafik, dan tabel tetap konsisten.
-- Detail perilaku halaman ada di [`frontend/README.md`](frontend/README.md); alasan di balik pilihan warna, tipografi, dan layout ada di [`frontend/DESIGN.md`](frontend/DESIGN.md).
