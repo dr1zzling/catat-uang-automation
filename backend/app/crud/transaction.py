@@ -50,6 +50,7 @@ def create_transaction(db: Session, user_id: int, data: TransactionCreate) -> Tr
         type=data.type,
         amount=data.amount,
         description=data.description,
+        created_at=datetime.now(),
     )
     db.add(transaction)
     db.commit()

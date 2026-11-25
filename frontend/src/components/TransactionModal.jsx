@@ -24,16 +24,18 @@ export function TransactionModal({
   useEffect(() => {
     if (!open) return
     setType(transaction?.type ?? 'expense')
-    setAmount(
-      transaction?.amount ? String(Math.round(Number(transaction.amount))) : '',
-    )
+    setAmount(transaction?.amount != null ? String(transaction.amount) : '')
     setDescription(transaction?.description ?? '')
     setErrors({})
   }, [open, transaction])
 
   function handleAmountChange(event) {
-    const digits = event.target.value.replace(/\D/g, '').slice(0, 9)
-    setAmount(digits)
+    const cleaned = event.target.value.replace(/[^\d.]/g, '')
+    const [whole = '', ...fraction] = cleaned.split('.')
+    const normalized = fraction.length
+      ? `${whole}.${fraction.join('').slice(0, 2)}`
+      : whole
+    setAmount(normalized.slice(0, 12))
     if (errors.amount) setErrors((current) => ({ ...current, amount: undefined }))
   }
 
@@ -149,7 +151,9 @@ export function TransactionModal({
             </p>
           ) : (
             <p id="amount-hint" className="mt-1.5 text-xs text-muted">
-              {amount ? `Nilai: ${formatRupiah(amount)}` : 'Tanpa titik atau koma. Maksimal Rp 999.999.999.'}
+              {amount
+                ? `Nilai: ${formatRupiah(amount)}`
+                : 'Boleh desimal maks. 2 digit. Maksimal Rp 999.999.999.'}
             </p>
           )}
         </div>

@@ -14,8 +14,13 @@ export function Modal({
   initialFocusRef,
 }) {
   const panelRef = useRef(null)
+  const onCloseRef = useRef(onClose)
   const titleId = useId()
   const descriptionId = useId()
+
+  useEffect(() => {
+    onCloseRef.current = onClose
+  }, [onClose])
 
   useEffect(() => {
     if (!open) return undefined
@@ -31,7 +36,7 @@ export function Modal({
     function handleKeyDown(event) {
       if (event.key === 'Escape') {
         event.stopPropagation()
-        onClose()
+        onCloseRef.current()
         return
       }
 
@@ -62,7 +67,7 @@ export function Modal({
       document.body.style.overflow = originalOverflow
       previouslyFocused?.focus?.()
     }
-  }, [open, onClose, initialFocusRef])
+  }, [open, initialFocusRef])
 
   if (!open) return null
 
@@ -70,7 +75,7 @@ export function Modal({
     <div
       className="fixed inset-0 z-50 flex items-end justify-center bg-black/60 p-0 sm:items-center sm:p-6"
       onMouseDown={(event) => {
-        if (event.target === event.currentTarget) onClose()
+        if (event.target === event.currentTarget) onCloseRef.current()
       }}
     >
       <div
